@@ -1,4 +1,4 @@
-let shopItemsData = [
+let shopItemsData2 = [
   {
     id: "jfhgbvnscs",
     name: "Casual Shirt",
