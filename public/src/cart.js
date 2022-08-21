@@ -14,14 +14,15 @@ let generateCartItems = () => {
             shoppingCart.innerHTML = basket.map((x) => {
                 let {id, item} = x;
                 let search = shopItemsData.find((y) => y.id === id) || [];
+                let {name, img, price} = search;
                 return `
                     <div class="cart-item">
-                        <img src="${search.img}" alt="">
+                        <img src="${img}" alt="">
                         <div class="details">
                             <div class="title-price-x">
                                 <h4>
-                                    <p>${search.name}</p>
-                                    <p>$ ${search.price}</p>
+                                    <p>${name}</p>
+                                    <p>$ ${price}</p>
                                 </h4>
                                 <i onclick="removeItem(${id})" class="bi bi-x-lg"></i>
                             </div>
@@ -32,7 +33,7 @@ let generateCartItems = () => {
                                 </div>
                                 <i onclick="increment(${id})" class="bi bi-plus-lg"></i>
                             </div>    
-                            <h3>$ ${item * search.price}</h3>
+                            <h3>$ ${item * price}</h3>
                         </div>
                     </div>
                 `;
@@ -105,6 +106,13 @@ let removeItem = (id) => {
     generateCartItems();
 }
 
+let clearCart = () => {
+    basket = [];
+    generateCartItems();
+    localStorage.setItem("data", JSON.stringify(basket));
+    calculation();
+}
+
 let totalAmount = () => {
     if(basket.length !== 0) {
         let amount = basket.map((x) => {
@@ -118,7 +126,7 @@ let totalAmount = () => {
                 <h2>Total amount: $ ${amount}</h2>
                 <div>
                     <button class="checkout">Checkout</button>
-                    <button class="removeAll">Clear cart</button>
+                    <button onclick="clearCart()" class="removeAll">Clear cart</button>
                 </div>
             </div>
         `;
