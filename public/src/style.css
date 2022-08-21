@@ -178,3 +178,21 @@ body {
     cursor: pointer;
 }
 
+.checkout, .removeAll {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+}
+
+.checkout {
+    border: 1px solid green;
+    background-color: green;
+}
+
+.removeAll {
+    border: 1px solid red;
+    background-color: red;
+}
+
